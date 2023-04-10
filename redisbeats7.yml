@@ -1,0 +1,13 @@
+filebeat.modules:
+- module: redis
+  log:
+    enabled: false
+  slowlog:
+    enabled: true
+    var.hosts: ["redis:6379"]
+output.elasticsearch:
+  enabled: true
+  hosts: ["http://elasticsearch:9200"]
+setup.ilm.enabled: auto
+setup.ilm.rollover_alias: "redis"
+setup.ilm.pattern: "{now/d}"
